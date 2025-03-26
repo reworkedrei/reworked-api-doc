@@ -34,6 +34,21 @@ Status Code: `200`
 - The token should be sent as an authorization header in the `process-leads` API.
 - The token will be valid for 24 hours.
 
+Status Code: `404`
+```json
+{
+    "msg": "Api key is invalid",
+    "data": null
+}
+```
+
+Status Code: `404`
+```json
+{
+    "msg": "Customer data not found",
+    "data": null
+}
+```
 ---
 
 ## Process Leads
@@ -46,10 +61,10 @@ Status Code: `200`
 ### Headers
 ```json
 {
-    "Authorization": "token from generate-token API response"
+    "Authorization": "Authorization Token"
 }
 ```
-
+- `Authorization` - token from generate-token API response
 ### Request Body
 ```json
 {
@@ -59,7 +74,7 @@ Status Code: `200`
 }
 ```
 - `file_url` - The URL of the file to process.
-- `callback_url` - URL to be called once file processing is completed.
+- `callback_url` - URL to be called once file processing is completed. ( Optional )
 
 ### Required Columns in File
 ```json
@@ -82,20 +97,48 @@ Status Code: `200`
     "msg": "File processing started",
     "data": {
         "token": "auth token",
-        "file_upload_identifier": "file upload identifier"
+        "file_upload_identifier": "file upload identifier",
+        "status": "PROCESSING"
     }
 }
 ```
-- `token` is to be used in the `file-status` API.
-- The token will be valid for 24 hours.
+- `token` is to be used in the `file-status` API. The token will be valid for 24 hours.
+- `file_upload_identifier` - unique identifier of your request
 
+
+Status Code: `200`
+```json
+{
+    "msg": "File is already in process, pls check after sometime",
+    "data": {
+        "error_detail": null,
+        "token": "token",
+        "file_upload_identifier": "67ce8b31124dd1006877c212",
+        "status": "PROCESSING"
+    }
+}
+```
+
+
+Status Code: `200`
+```json
+{
+    "msg": "Error 105: File is under review",
+    "data": {
+        "error_detail": null,
+        "token": "token",
+        "file_upload_identifier": "67ce8b31124dd1006877c212",
+        "status": "UnderReview"
+    }
+}
+```
 ### Error Cases
 Status Code: `500`
 ```json
 {
-    "msg": "Error 103: Requisite columns required to generate a Betty Score is not present.",
+    "msg": "Error 101: Please sign up for a plan at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
     "data": {
-        "error_detail": "Error 103: Requisite columns required to generate a Betty Score is not present.",
+        "error_detail": "Error 101: Please sign up for a plan at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
         "status": "ERROR"
     }
 }
@@ -103,9 +146,9 @@ Status Code: `500`
 Status Code: `500`
 ```json
 {
-    "msg": "Error 101: Please sign up for a plan at reworked.ai before proceeding.",
+    "msg": "Error 102: Payment method failed, please update payment method at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
     "data": {
-        "error_detail": "Error 101: Please sign up for a plan at reworked.ai before proceeding.",
+        "error_detail": "Error 102: Payment method failed, please update payment method at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
         "status": "ERROR"
     }
 }
@@ -113,14 +156,24 @@ Status Code: `500`
 Status Code: `500`
 ```json
 {
-    "msg": "Error 102: Payment method failed, please update payment method at reworked.ai before proceeding.",
+    "msg": "Error 103: Requisite columns required to generate a Betty Score is not present. Please contact admin@reworked.ai or call at +1 888 306 1949.",
     "data": {
-        "error_detail": "Error 102: Payment method failed, please update payment method at reworked.ai before proceeding.",
+        "error_detail": "Error 103: Requisite columns required to generate a Betty Score is not present. Please contact admin@reworked.ai or call at +1 888 306 1949.",
         "status": "ERROR"
     }
 }
 ```
-
+Status Code: `500`
+```json
+{
+    "msg": "Error 104: Please create an investment profile at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
+    "data": {
+        "error_detail": "Error 104: Please create an investment profile at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
+        "status": "ERROR"
+    }
+}
+```
+- `status` - PROCESSED/ERROR/PROCESSING/UnderReview
 ---
 
 ## File Status
@@ -150,36 +203,71 @@ Status Code: `500`
 Status Code: `200`
 ```json
 {
-    "msg": "File Processed Successfully",
+    "msg": "File is already in process, pls check after sometime",
     "data": {
-        "processed_file_url": "Processed file URL",
+        "error_detail": null,
+        "token": "token",
+        "file_upload_identifier": "67ce8b31124dd1006877c212",
         "status": "PROCESSING"
     }
 }
 ```
 
-### Error Cases
-Status Code: `500`
-```json
-{
-    "msg": "Error 104: File url is not accessible, please try again with correct url.",
-    "data": {
-        "error_detail": "Error 104: File url is not accessible, please try again with correct url.",
-        "status": "ERROR"
-    }
-}
-```
+
 Status Code: `200`
 ```json
 {
     "msg": "Error 105: File is under review",
     "data": {
-        "error_detail": "Error 105: File is under review",
+        "error_detail": null,
+        "token": "token",
+        "file_upload_identifier": "67ce8b31124dd1006877c212",
         "status": "UnderReview"
     }
 }
 ```
-
+### Error Cases
+Status Code: `500`
+```json
+{
+    "msg": "Error 101: Please sign up for a plan at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
+    "data": {
+        "error_detail": "Error 101: Please sign up for a plan at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
+        "status": "ERROR"
+    }
+}
+```
+Status Code: `500`
+```json
+{
+    "msg": "Error 102: Payment method failed, please update payment method at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
+    "data": {
+        "error_detail": "Error 102: Payment method failed, please update payment method at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
+        "status": "ERROR"
+    }
+}
+```
+Status Code: `500`
+```json
+{
+    "msg": "Error 103: Requisite columns required to generate a Betty Score is not present. Please contact admin@reworked.ai or call at +1 888 306 1949.",
+    "data": {
+        "error_detail": "Error 103: Requisite columns required to generate a Betty Score is not present. Please contact admin@reworked.ai or call at +1 888 306 1949.",
+        "status": "ERROR"
+    }
+}
+```
+Status Code: `500`
+```json
+{
+    "msg": "Error 104: Please create an investment profile at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
+    "data": {
+        "error_detail": "Error 104: Please create an investment profile at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
+        "status": "ERROR"
+    }
+}
+```
+- `status` - PROCESSED/ERROR/PROCESSING/UnderReview
 ---
 
 ## Authenticate User
@@ -198,6 +286,7 @@ Status Code: `200`
 ```
 
 ### Success Response
+Status Code: `200`
 ```json
 {
     "msg": "User Authenticated Successfully",
@@ -229,18 +318,8 @@ Status Code: `403`
     }
 }
 ```
-
 ---
 
-## Get User Details
-### Curl Request
-```sh
-curl --location --request POST 'https://api.example.com/user-details' \
---header 'Authorization: Bearer <TOKEN>' \
---data-raw ''
-```
-
----
 
 ## API Flowchart
 ```mermaid
