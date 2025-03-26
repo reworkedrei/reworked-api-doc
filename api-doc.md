@@ -346,10 +346,15 @@ flowchart TD
 # API Sequence Diagram
 
 Below is the sequence diagram for API interactions:
+<!-- 
+
+![API Sequence Diagram](https://kroki.io/plantuml/svg/eNptUc2KwjAQvucpBk8WGioePYgiLsguWrr2AWab0Q1Nk5Kk-vqb1Opu2eaQwMw338-EbZxH67tGMay8sVA6sqwNJVnJFrWHWUF3Y2sSsM0PM0AX3zFih0p9YVVDWXz0iGeBsUgHfB1nVpCfPs-QXUmTRU_cm5o0Cx3gARGRK1guFnB6h_k59pLJ-daaipzjilA4mG87_w09PIU3qSiaSGHfoFQp_HWWMFR-VIHcmpsUJBiE0xtZvwCDXP5QC_EjeQ98UfCnsYdrRsoRHM1Io5-YSHEJbDzs3neTGVplUMBBkPbyIskOiZJfp_9WNjiV-pqVWgTBgm6S7tnONK0iTyJhpAXbhCt89w_rGJyw) -->
 
 
-![API Sequence Diagram](https://kroki.io/plantuml/svg/eNptUc2KwjAQvucpBk8WGioePYgiLsguWrr2AWab0Q1Nk5Kk-vqb1Opu2eaQwMw338-EbZxH67tGMay8sVA6sqwNJVnJFrWHWUF3Y2sSsM0PM0AX3zFih0p9YVVDWXz0iGeBsUgHfB1nVpCfPs-QXUmTRU_cm5o0Cx3gARGRK1guFnB6h_k59pLJ-daaipzjilA4mG87_w09PIU3qSiaSGHfoFQp_HWWMFR-VIHcmpsUJBiE0xtZvwCDXP5QC_EjeQ98UfCnsYdrRsoRHM1Io5-YSHEJbDzs3neTGVplUMBBkPbyIskOiZJfp_9WNjiV-pqVWgTBgm6S7tnONK0iTyJhpAXbhCt89w_rGJyw)
 
+
+<!-- - dsdd -->
+![Sequence Diagram](sequence.png)
 
 <div style="display: none;">
     
