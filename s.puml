@@ -1,0 +1,20 @@
+<div style="display: none;">
+    
+```plantuml
+@startuml
+actor User
+participant "Reworked API" as API
+participant "Callback URL" as Callback
+
+User -> API: POST /generate-token
+API --> User: 200 OK (Token)
+
+User -> API: POST /process-leads (Auth Token, File URL, Email, Callback URL)
+alt Callback URL Provided
+    API -> Callback: POST Processed File
+    Callback --> API: 200 OK
+else No Callback URL
+    User -> API: POST /file-status (Auth Token, File Upload Identifier, Email)
+    API --> User: 200 OK (Processing/Under Review/Completed)
+end
+@enduml
