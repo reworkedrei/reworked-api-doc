@@ -34,6 +34,7 @@ Status Code: `200`
 - The token should be sent as an authorization header in the `process-leads` API.
 - The token will be valid for 24 hours.
 
+### Error Cases
 Status Code: `404`
 ```json
 {
