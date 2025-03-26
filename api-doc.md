@@ -339,3 +339,9 @@ flowchart TD
     I --> Z[End]
 ```
 
+# API Sequence Diagram
+
+Below is the sequence diagram for API interactions:
+
+
+![API Sequence Diagram](https://kroki.io/plantuml/svg/eNqFkcFqwzAQRO_6iiGnGCwccsyhJIQWQgMxTvwBW2uTCsuSkeTm9yullB7q0pPY3dHMk3YbIvk4DUZQF51HG9iLMbV0p0eyEYuG7873rLCrDwtQyKcQWQf5lIsN6tP5gurGlj1FltH1bEWaQCZFVm6wXq1wesXykmeFmDUYves4BGmYVMByN8V3PPQlXrRhtM2xxPNA2pTYkzFv1PW5WfyRVX_5aXvDOb-S1bfRaBwpHBTbqK-afYmfsGKW7ZruyfRXcZol-2344PyfrGqtSmENf2i-V3s3jIYTaCG2bFVeyydnrINj)
