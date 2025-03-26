@@ -330,8 +330,12 @@ flowchart TD
     C -->|Yes| D[Process Leads \n /process-leads API]
     C -->|No| Z[End]
     D --> E{File Processing Started}
-    E -->|Yes| F[Check File Status \n /file-status API]
-    E -->|No| Z
+    
+    E -->|Callback URL Provided| X[Send Processed File \n to Callback URL]
+    X --> Y[Callback URL Acknowledges]
+    Y --> Z[End]
+    
+    E -->|No Callback URL| F[Check File Status \n /file-status API]
     F --> G{File Processed Successfully?}
     G -->|Yes| H[Return File URL]
     G -->|No| I[Handle Error]
@@ -344,4 +348,26 @@ flowchart TD
 Below is the sequence diagram for API interactions:
 
 
-![API Sequence Diagram](https://kroki.io/plantuml/svg/eNqFkcFqwzAQRO_6iiGnGCwccsyhJIQWQgMxTvwBW2uTCsuSkeTm9yullB7q0pPY3dHMk3YbIvk4DUZQF51HG9iLMbV0p0eyEYuG7873rLCrDwtQyKcQWQf5lIsN6tP5gurGlj1FltH1bEWaQCZFVm6wXq1wesXykmeFmDUYves4BGmYVMByN8V3PPQlXrRhtM2xxPNA2pTYkzFv1PW5WfyRVX_5aXvDOb-S1bfRaBwpHBTbqK-afYmfsGKW7ZruyfRXcZol-2344PyfrGqtSmENf2i-V3s3jIYTaCG2bFVeyydnrINj)
+![API Sequence Diagram](https://kroki.io/plantuml/svg/eNptUc2KwjAQvucpBk8WGioePYgiLsguWrr2AWab0Q1Nk5Kk-vqb1Opu2eaQwMw338-EbZxH67tGMay8sVA6sqwNJVnJFrWHWUF3Y2sSsM0PM0AX3zFih0p9YVVDWXz0iGeBsUgHfB1nVpCfPs-QXUmTRU_cm5o0Cx3gARGRK1guFnB6h_k59pLJ-daaipzjilA4mG87_w09PIU3qSiaSGHfoFQp_HWWMFR-VIHcmpsUJBiE0xtZvwCDXP5QC_EjeQ98UfCnsYdrRsoRHM1Io5-YSHEJbDzs3neTGVplUMBBkPbyIskOiZJfp_9WNjiV-pqVWgTBgm6S7tnONK0iTyJhpAXbhCt89w_rGJyw)
+
+
+<div style="display: none;">
+    
+```plantuml
+@startuml
+actor User
+participant "Reworked API" as API
+participant "Callback URL" as Callback
+
+User -> API: POST /generate-token
+API --> User: 200 OK (Token)
+
+User -> API: POST /process-leads (Auth Token, File URL, Email, Callback URL)
+alt Callback URL Provided
+    API -> Callback: POST Processed File
+    Callback --> API: 200 OK
+else No Callback URL
+    User -> API: POST /file-status (Auth Token, File Upload Identifier, Email)
+    API --> User: 200 OK (Processing/Under Review/Completed)
+end
+@enduml
