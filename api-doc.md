@@ -129,7 +129,7 @@ Status Code: `200`
         "error_detail": null,
         "token": "token",
         "file_upload_identifier": "67ce8b31124dd1006877c212",
-        "status": "UnderReview"
+        "status": "UNDERREVIEW"
     }
 }
 ```
@@ -174,7 +174,7 @@ Status Code: `500`
     }
 }
 ```
-- `status` - PROCESSED/ERROR/PROCESSING/UnderReview
+- `status` - PROCESSED/ERROR/PROCESSING/UNDERREVIEW
 ---
 
 ## File Status
@@ -223,7 +223,7 @@ Status Code: `200`
         "error_detail": null,
         "token": "token",
         "file_upload_identifier": "67ce8b31124dd1006877c212",
-        "status": "UnderReview"
+        "status": "UNDERREVIEW"
     }
 }
 ```
@@ -268,7 +268,7 @@ Status Code: `500`
     }
 }
 ```
-- `status` - PROCESSED/ERROR/PROCESSING/UnderReview
+- `status` - PROCESSED/ERROR/PROCESSING/UNDERREVIEW
 ---
 
 ## Authenticate User
