@@ -124,7 +124,7 @@ Status Code: `200`
 Status Code: `200`
 ```json
 {
-    "msg": "Error 105: File is under review",
+    "msg": "File is under review",
     "data": {
         "error_detail": null,
         "token": "token",
@@ -218,7 +218,7 @@ Status Code: `200`
 Status Code: `200`
 ```json
 {
-    "msg": "Error 105: File is under review",
+    "msg": "File is under review",
     "data": {
         "error_detail": null,
         "token": "token",
