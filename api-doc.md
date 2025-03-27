@@ -18,7 +18,7 @@
 }
 ```
 - `api_key` will be provided by Reworked.
-- `email` is the ID from which you created a Reworked account.
+- `email` email id you used to create an account on Reworked.ai.
 
 ### Response
 Status Code: `200`
