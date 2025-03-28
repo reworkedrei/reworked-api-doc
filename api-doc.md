@@ -1,9 +1,9 @@
 # **Reworked API Documentation**
 
 ## Base URL
-`/api`
+Contact your point of contact at Reworked.ai to obtain the base URL
 
-## **Generate Token**
+## **Generate JWT Token**
 ### Endpoint
 `/generate-token`
 
@@ -62,10 +62,9 @@ Status Code: `404`
 ### Headers
 ```json
 {
-    "Authorization": "Authorization Token"
+    "Authorization": "Authorization Token from generate-token API response"
 }
 ```
-- `Authorization` - token from generate-token API response
 ### Request Body
 ```json
 {
@@ -94,7 +93,7 @@ Status Code: `200`
 {
     "msg": "File processing started",
     "data": {
-        "token": "auth token",
+        "token": "auth token to be used in file-status API",
         "file_upload_identifier": "file upload identifier",
         "status": "PROCESSING"
     }
@@ -116,62 +115,16 @@ Status Code: `200`
     }
 }
 ```
-
-
-Status Code: `200`
-```json
-{
-    "msg": "File is under review",
-    "data": {
-        "error_detail": null,
-        "token": "token",
-        "file_upload_identifier": "67ce8b31124dd1006877c212",
-        "status": "UNDERREVIEW"
-    }
-}
-```
-### Error Cases
-Status Code: `500`
-```json
-{
-    "msg": "Error 101: Please sign up for a plan at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
-    "data": {
-        "error_detail": "Error 101: Please sign up for a plan at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
-        "status": "ERROR"
-    }
-}
-```
-Status Code: `500`
-```json
-{
-    "msg": "Error 102: Payment method failed, please update payment method at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
-    "data": {
-        "error_detail": "Error 102: Payment method failed, please update payment method at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
-        "status": "ERROR"
-    }
-}
-```
-Status Code: `500`
-```json
-{
-    "msg": "Error 103: Requisite columns required to generate a Betty Score is not present. Please contact admin@reworked.ai or call at +1 888 306 1949.",
-    "data": {
-        "error_detail": "Error 103: Requisite columns required to generate a Betty Score is not present. Please contact admin@reworked.ai or call at +1 888 306 1949.",
-        "status": "ERROR"
-    }
-}
-```
-Status Code: `500`
-```json
-{
-    "msg": "Error 104: Please create an investment profile at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
-    "data": {
-        "error_detail": "Error 104: Please create an investment profile at reworked.ai before proceeding. You can also contact admin@reworked.ai or call at +1 888 306 1949.",
-        "status": "ERROR"
-    }
-}
-```
 - `status` - PROCESSED/ERROR/PROCESSING/UNDERREVIEW
+
+### Error Cases
+Status Code: `400`
+```json
+{
+    "msg": "File url is missing",
+    "data": null
+}
+```
 ---
 
 ## File Status
@@ -267,57 +220,6 @@ Status Code: `500`
 ```
 - `status` - PROCESSED/ERROR/PROCESSING/UNDERREVIEW
 ---
-
-## Authenticate User
-### Endpoint
-`/user-authenticate`
-
-### Method
-`POST`
-
-### Request Body
-```json
-{
-    "email": "email",
-    "password": "password"
-}
-```
-
-### Success Response
-Status Code: `200`
-```json
-{
-    "msg": "User Authenticated Successfully",
-    "data": {
-        "api_secret_key": "api_secret_key"
-    }
-}
-```
-
-### Error Responses
-#### Invalid Email ID
-Status Code: `400`
-```json
-{
-    "msg": "Invalid Email ID",
-    "data": {}
-}
-```
-
-#### Wrong Password
-Status Code: `403`
-```json
-{
-    "msg": "Password is not correct",
-    "data": {
-        "error_detail": {
-            "message": "Request failed with status code 403"
-        }
-    }
-}
-```
----
-
 
 ## API Flowchart
 ```mermaid
