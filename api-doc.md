@@ -85,12 +85,9 @@ Status Code: `404`
     "mail_city",
     "mail_state",
     "mail_zip_code",
-    "lot_area_sqft",    
-    "apn",             
     "property_zip_code"
 ]
 ```
-- `lot_area_sqft` and `apn` are applicable for **LAND** type.
 ### Response
 Status Code: `200`
 ```json
