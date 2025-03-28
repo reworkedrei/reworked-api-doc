@@ -168,9 +168,8 @@ Status Code: `200`
 Status Code: `200`
 ```json
 {
-    "msg": "File is under review",
+    "msg": "File is under review, it should be processed within the next 12hrs.",
     "data": {
-        "error_detail": null,
         "token": "token",
         "file_upload_identifier": "67ce8b31124dd1006877c212",
         "status": "UNDERREVIEW"
