@@ -245,5 +245,5 @@ flowchart TD
 
 Below is the sequence diagram for API interactions:
 
-![Sequence Diagram](sequence.png)
+![Sequence Diagram](https://raw.githubusercontent.com/reworkedrei/reworked-api-doc/main/sequence.png)
 
