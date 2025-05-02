@@ -70,11 +70,45 @@ Status Code: `404`
 {
     "file_url": "file upload file url",
     "email": "email",
-    "callback_url": "callback_url"
+    "callback_url": "callback_url",
+    "overwrite" : true,
+    "industry_profile_type": "industry_type",
+    "input_type":"url",
+    "industry_profile_id": "industry_profile_id",
+    "customer_request_id":"customer_request_id"
 }
 ```
-- `file_url` - The URL of the file to process.
-- `callback_url` - URL to be called once file processing is completed. ( Optional )
+
+###  Required Fields
+
+* **`email`**: Your email address.
+
+---
+
+###  Optional Fields (Based on `input_type`)
+
+* **`input_type`**: Either `"url"` (to upload via file URL) or `"json"` (to send raw data directly).
+
+* If **`input_type` is `"url"`**, include:
+
+  * **`file_url`**: A valid URL pointing to the file you want to process.
+
+* If **`input_type` is `"json"`**, include:
+
+  * **`input_data`**: Your data as a JSON object.
+
+---
+
+###  Optional Configuration
+
+* **`callback_url`**: A URL that will be notified when processing is complete.
+* **`industry_profile_type`**: One of:
+  `"REAL_ESTATE_INVESTORS"`, `"SOLAR_INSTALLER"`, `"INSURANCE_PROVIDER"`, `"ROOFING"`.
+* **`industry_profile_id`**: A specific industry profile ID if you want to use a specific industry profile.
+* **`overwrite`**: Boolean (`true` or `false`) – determines whether existing data should be overwritten.
+* **`customer_request_id`**: external order id of the file
+
+> **Important Note**: If both `industry_profile_type` and `industry_profile_id` are provided, the `industry_profile_type` will take precedence.
 
 ### Required Columns in File
 ```json
@@ -125,6 +159,9 @@ Status Code: `400`
     "data": null
 }
 ```
+Common error messages:
+* `"Invalid token"` - JWT token email doesn't match request email
+* `"Invalid industry_profile_type provided. Allowed values are: REAL_ESTATE_INVESTORS, SOLAR_INSTALLER, INSURANCE_PROVIDER, ROOFING"` - When industry_profile_type is invalid
 ---
 
 ## File Status
