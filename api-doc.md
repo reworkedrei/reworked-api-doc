@@ -161,7 +161,7 @@ Status Code: `400`
 ```
 Common error messages:
 * `"Invalid token"` - JWT token email doesn't match request email
-* `"Invalid industry_profile_type provided. Allowed values are: REAL_ESTATE_INVESTORS, SOLAR_INSTALLER, INSURANCE_PROVIDER, ROOFING"` - When industry_profile_type is invalid
+* `"Invalid industry_profile_type provided. Allowed values are: REAL_ESTATE_INVESTORS, SOLAR_INSTALLER, ROOFING"` - When industry_profile_type is invalid
 ---
 
 ## File Status
