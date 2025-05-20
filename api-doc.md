@@ -103,7 +103,7 @@ Status Code: `404`
 
 * **`callback_url`**: A URL that will be notified when processing is complete.
 * **`industry_profile_type`**: One of:
-  `"REAL_ESTATE_INVESTORS"`, `"SOLAR_INSTALLER"`, `"INSURANCE_PROVIDER"`, `"ROOFING"`.
+  `"REAL_ESTATE_INVESTORS"`, `"SOLAR_INSTALLER"`, `"ROOFING"`.
 * **`industry_profile_id`**: A specific industry profile ID if you want to use a specific industry profile.
 * **`overwrite`**: Boolean (`true` or `false`) – determines whether existing data should be overwritten.
 * **`customer_request_id`**: external order id of the file
